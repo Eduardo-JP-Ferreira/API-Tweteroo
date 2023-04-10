@@ -24,42 +24,42 @@ const listaTweets = [
 		tweet: "Eu amo hambúrguer de siri!"
 	},
     {
-		username: "bobesponja",
+		username: "bobesponja3",
 		avatar: "https://cdn.shopify.com/s/files/1/0150/0643/3380/files/Screen_Shot_2019-07-01_at_11.35.42_AM_370x230@2x.png",
 		tweet: "Eu amo hambúrguer de siri!"
 	},
     {
-		username: "bobesponja",
+		username: "bobesponja4",
 		avatar: "https://cdn.shopify.com/s/files/1/0150/0643/3380/files/Screen_Shot_2019-07-01_at_11.35.42_AM_370x230@2x.png",
 		tweet: "Eu amo hambúrguer de siri!"
 	},
     {
-		username: "bobesponja",
+		username: "bobesponja5",
 		avatar: "https://cdn.shopify.com/s/files/1/0150/0643/3380/files/Screen_Shot_2019-07-01_at_11.35.42_AM_370x230@2x.png",
 		tweet: "Eu amo hambúrguer de siri!"
 	},
     {
-		username: "bobesponja",
+		username: "bobesponja6",
 		avatar: "https://cdn.shopify.com/s/files/1/0150/0643/3380/files/Screen_Shot_2019-07-01_at_11.35.42_AM_370x230@2x.png",
 		tweet: "Eu amo hambúrguer de siri!"
 	},
     {
-		username: "bobesponja",
+		username: "bobesponja7",
 		avatar: "https://cdn.shopify.com/s/files/1/0150/0643/3380/files/Screen_Shot_2019-07-01_at_11.35.42_AM_370x230@2x.png",
 		tweet: "Eu amo hambúrguer de siri!"
 	},
     {
-		username: "bobesponja",
+		username: "bobesponja8",
 		avatar: "https://cdn.shopify.com/s/files/1/0150/0643/3380/files/Screen_Shot_2019-07-01_at_11.35.42_AM_370x230@2x.png",
 		tweet: "Eu amo hambúrguer de siri!"
 	},
     {
-		username: "bobesponja",
+		username: "bobesponja9",
 		avatar: "https://cdn.shopify.com/s/files/1/0150/0643/3380/files/Screen_Shot_2019-07-01_at_11.35.42_AM_370x230@2x.png",
 		tweet: "Eu amo hambúrguer de siri!"
 	},
     {
-		username: "bobesponja",
+		username: "bobesponja10",
 		avatar: "https://cdn.shopify.com/s/files/1/0150/0643/3380/files/Screen_Shot_2019-07-01_at_11.35.42_AM_370x230@2x.png",
 		tweet: "Eu amo hambúrguer de siri!"
 	},
@@ -71,7 +71,6 @@ const listaTweets = [
 ]
 
 app.post("/sign-up", (req, res) => {
-    console.log(req.body)
     const {username, avatar} = req.body
     const novoUsuario = {
         id: usuario.length + 1,
@@ -90,7 +89,23 @@ app.get("/tweets",(req, res) => {
     res.send(novaListaTweets)
 })
 
+app.post("/tweets",(req, res) => {
+    const {username, tweet} = req.body
+    const pessoa = usuario.find((usuario)=> usuario.username === username)
 
+    if(!pessoa){
+        res.send("UNAUTHORIZED")
+        return
+    }
+
+    const novoTweet = {
+        username: username,
+        avatar: pessoa.avatar,
+        tweet: tweet
+    }
+    listaTweets.push(novoTweet)
+    res.send("OK")
+})
 
 
 
