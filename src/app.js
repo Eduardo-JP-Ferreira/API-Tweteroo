@@ -1,5 +1,98 @@
 import express from "express"
+import cors from 'cors'
 
 const app = express() 
+app.use(cors())
+app.use(express.json())
+const usuario = [
+    {
+        id: 1,
+        username: "bobesponja",
+        avatar: "https://cdn.shopify.com/s/files/1/0150/0643/3380/files/Screen_Shot_2019-07-01_at_11.35.42_AM_370x230@2x.png"
+    }
+]
 
-app.listen(5000, () => console.log("Servidor rodando"))
+const listaTweets = [
+    {
+		username: "bob1",
+		avatar: "https://cdn.shopify.com/s/files/1/0150/0643/3380/files/Screen_Shot_2019-07-01_at_11.35.42_AM_370x230@2x.png",
+		tweet: "Eu amo hambúrguer de siri!"
+	},
+    {
+		username: "bobesponja2",
+		avatar: "https://cdn.shopify.com/s/files/1/0150/0643/3380/files/Screen_Shot_2019-07-01_at_11.35.42_AM_370x230@2x.png",
+		tweet: "Eu amo hambúrguer de siri!"
+	},
+    {
+		username: "bobesponja",
+		avatar: "https://cdn.shopify.com/s/files/1/0150/0643/3380/files/Screen_Shot_2019-07-01_at_11.35.42_AM_370x230@2x.png",
+		tweet: "Eu amo hambúrguer de siri!"
+	},
+    {
+		username: "bobesponja",
+		avatar: "https://cdn.shopify.com/s/files/1/0150/0643/3380/files/Screen_Shot_2019-07-01_at_11.35.42_AM_370x230@2x.png",
+		tweet: "Eu amo hambúrguer de siri!"
+	},
+    {
+		username: "bobesponja",
+		avatar: "https://cdn.shopify.com/s/files/1/0150/0643/3380/files/Screen_Shot_2019-07-01_at_11.35.42_AM_370x230@2x.png",
+		tweet: "Eu amo hambúrguer de siri!"
+	},
+    {
+		username: "bobesponja",
+		avatar: "https://cdn.shopify.com/s/files/1/0150/0643/3380/files/Screen_Shot_2019-07-01_at_11.35.42_AM_370x230@2x.png",
+		tweet: "Eu amo hambúrguer de siri!"
+	},
+    {
+		username: "bobesponja",
+		avatar: "https://cdn.shopify.com/s/files/1/0150/0643/3380/files/Screen_Shot_2019-07-01_at_11.35.42_AM_370x230@2x.png",
+		tweet: "Eu amo hambúrguer de siri!"
+	},
+    {
+		username: "bobesponja",
+		avatar: "https://cdn.shopify.com/s/files/1/0150/0643/3380/files/Screen_Shot_2019-07-01_at_11.35.42_AM_370x230@2x.png",
+		tweet: "Eu amo hambúrguer de siri!"
+	},
+    {
+		username: "bobesponja",
+		avatar: "https://cdn.shopify.com/s/files/1/0150/0643/3380/files/Screen_Shot_2019-07-01_at_11.35.42_AM_370x230@2x.png",
+		tweet: "Eu amo hambúrguer de siri!"
+	},
+    {
+		username: "bobesponja",
+		avatar: "https://cdn.shopify.com/s/files/1/0150/0643/3380/files/Screen_Shot_2019-07-01_at_11.35.42_AM_370x230@2x.png",
+		tweet: "Eu amo hambúrguer de siri!"
+	},
+    {
+		username: "bobesponja11",
+		avatar: "https://cdn.shopify.com/s/files/1/0150/0643/3380/files/Screen_Shot_2019-07-01_at_11.35.42_AM_370x230@2x.png",
+		tweet: "Eu amo hambúrguer de siri!"
+	}
+]
+
+app.post("/sign-up", (req, res) => {
+    console.log(req.body)
+    const {username, avatar} = req.body
+    const novoUsuario = {
+        id: usuario.length + 1,
+        username: username,
+        avatar: avatar
+    }
+
+    usuario.push(novoUsuario)
+    res.send("OK")
+})
+app.get("/tweets",(req, res) => {
+    const novaListaTweets = []
+    for(let i=listaTweets.length-10; i<listaTweets.length;i++){
+        novaListaTweets.push(listaTweets[i])
+    }
+    res.send(novaListaTweets)
+})
+
+
+
+
+
+const PORT = 5000
+app.listen(PORT, () => console.log("Servidor rodando"))
